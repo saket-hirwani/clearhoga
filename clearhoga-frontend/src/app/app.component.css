@@ -1,0 +1,34 @@
+.question-container {
+  margin: 10px 0;
+  transition: background-color 0.3s;
+  padding: 20px;
+  margin: 0 2vw;
+}
+.question-container:hover {
+  background: rgba(242, 242, 242, 0.05);
+  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+  backdrop-filter: blur(0.5px);
+  -webkit-backdrop-filter: blur(0.5px);
+  border-radius: 10px;
+}
+.option {
+  padding: 10px;
+  border-radius: 5px;
+  margin-bottom: 5px;
+  transition: background-color 0.3s;
+  cursor: pointer;
+  background: rgba(255, 255, 255, 0.8);
+  box-shadow: 0 8px 32px 0 rgb(40 48 168 / 27%);
+  backdrop-filter: blur(4.5px);
+  -webkit-backdrop-filter: blur(4.5px);
+  border-radius: 10px;
+  margin: 10px 0;
+}
+.option:hover {
+    background: rgb(142 183 218);
+    box-shadow: 0 8px 32px 0 rgb(234 234 229 / 37%);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  border-radius: 10px;
+  /* border: 1px solid rgba( 255, 255, 255, 0.18 ); */
+}

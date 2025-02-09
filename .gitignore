@@ -1,0 +1,12 @@
+clearhoga-backend/node_modules
+clearhoga-frontend/node_modules
+
+clearhoga-frontend/src/environments/environment.ts
+clearhoga-backend/.env
+
+# Ignore build and dist folders
+clearhoga-frontend/dist/
+clearhoga-backend/build/
+
+# Ignore logs and other unwanted files
+*.log

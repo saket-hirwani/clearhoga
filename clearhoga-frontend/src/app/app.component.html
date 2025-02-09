@@ -1,0 +1,78 @@
+<div style="text-align:center; font-family: Arial, sans-serif; background-color: #f0f8ff; padding: 20px; border-radius: 10px; box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); margin: 10px auto; width: 100%; max-width: 80vw;">
+  <h1 style="color: #333; font-size: 2.5em; margin-bottom: 20px;">Welcome to ClearHoga.ai</h1>
+
+  <div style="display: flex; align-items: center; gap: 20px; flex-wrap: wrap; justify-content: center;">
+    <!-- Input Field for Exam Name -->
+    <input   
+      type="text"
+      [(ngModel)]="examName"
+      placeholder="Enter exam name"
+      style="padding: 10px; font-size: 16px; border: 1px solid #ccc; border-radius: 5px; width: 200px;"
+    />
+    <input
+      *ngIf="language === 'manual'"
+      type="text"
+      [(ngModel)]="manualLanguage"
+      placeholder="Enter language manually"
+      style="padding: 10px; font-size: 16px; border: 1px solid #ccc; border-radius: 5px; width: 200px;"
+    />
+    <select [(ngModel)]="language" (change)="onLanguageChange($event)" style="padding: 10px; font-size: 16px; border: 1px solid #ccc; border-radius: 5px; width: 200px;">
+      <option value="" disabled selected>Select language</option>
+      <option value="manual">Enter manually</option>
+      <option value="english">English</option>
+      <option value="hindi">Hindi</option>
+    </select>
+    <select [(ngModel)]="difficultyLevel" style="padding: 10px; font-size: 16px; border: 1px solid #ccc; border-radius: 5px; width: 200px;">
+      <option value="" disabled selected>Select difficulty level</option>
+      <option value="easy" selected>Easy</option>
+      <option value="medium">Medium</option>
+      <option value="hard">Hard</option>
+    </select>
+    <button (click)="questions = []; getQuestions()" style="padding: 10px; font-size: 16px; background-color: #4CAF50; color: white; border: none; border-radius: 5px; cursor: pointer; transition: background-color 0.3s;">
+      Generate Questions
+    </button>
+  </div>
+
+  <!-- Display Questions -->
+  <div *ngIf="questions" style="margin-top: 20px; text-align:left; animation: fadeIn 1s;">
+    <h2 style="color: #333;">{{heading}}</h2>
+    <p>{{headDescription}}</p>
+    <div *ngFor="let question of questions" class="question-container">
+      <h3 style="color: #333;">{{ question.question }}</h3>
+      <ul style="list-style-type: none; padding: 0;">
+        <li *ngFor="let option of question.options" (click)="selectAnswer(question, option)" 
+        [style.background-color]="option === question.selectedAnswer ? (option === question.answer ? 'lightgreen' : 'lightcoral') : ''"
+        class="option" >
+          <input type="radio" name="{{ question.question }}" /> {{ option }}
+        </li>
+      </ul>
+      <div *ngIf="question.selectedAnswer" style="margin-top: 15px;">
+        <p><strong>Correct Answer:</strong> {{ question.answer }}</p>
+        <p><strong>Explanation:</strong> {{ question.explanation }}</p>
+      </div>
+    </div>
+    <!-- Loading State -->
+    <div *ngIf="loading()" style="margin-top: 20px; text-align: center;">
+      <p style="color: #ff4500; font-size: 1.2em;">Loading...</p>
+    </div>
+    <button *ngIf="questions?.length && !loading()" (click)="getQuestions()" style="text-align: center; padding: 10px; font-size: 16px; background-color: #4CAF50; color: white; border: none; border-radius: 5px; cursor: pointer; transition: background-color 0.3s; margin-top: 20px;">
+      Generate 10 More Questions
+    </button>
+    <!-- Error State -->
+    <div *ngIf="error" style="margin-top: 20px; color: red; font-size: 1.2em;">
+      <p><strong>Error:</strong> {{ error }}</p>
+      <p>Please try again later or contact support if the issue persists.</p>
+    </div>
+  </div>
+</div>
+
+<style>
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+
+  button:hover {
+    background-color: #45a049;
+  }
+</style>
