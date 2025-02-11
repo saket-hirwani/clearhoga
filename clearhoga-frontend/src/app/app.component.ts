@@ -27,7 +27,7 @@ export class AppComponent {
     if (!this.examName) return;  // Validate if exam name is entered
     this.error = "";
     this.loading.set(true);  // Set loading to true
-    this.http.post<any>('http://localhost:3000/api/generate-questions', { examName: this.examName,
+    this.http.post<any>('https://clearhoga.onrender.com/api/generate-questions', { examName: this.examName,
       language : this.language =='manual' ? this.manualLanguage : this.language,
       difficultyLevel: this.difficultyLevel
 })

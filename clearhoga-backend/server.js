@@ -11,7 +11,7 @@ app.use(express.json());
 
 app.post('/api/generate-questions', async (req, res) => {
   const { examName,language, difficultyLevel } = req.body;
-  const apiKey = "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";
+  const apiKey = "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";
 
   if (!examName) {
     return res.status(400).send('Exam name is required');
