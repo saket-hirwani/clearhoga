@@ -103,7 +103,6 @@ app.post('/api/generate-questions', async (req, res) => {
     const result = await model.generateContent(prompt);
     // rawData = rawData.replace(/^```json/, "").replace(/```$/, "").trim();
       rawData = result.response.text();
-      console.log(rawData);
       rawData = rawData.replace(/^```json/, "")
         let parsedData = JSON.parse(rawData);
         
